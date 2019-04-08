@@ -4,7 +4,7 @@
 
     protected $_head;
     protected $_body;
-    protected $_siteTitle;
+    protected $_siteTitle = SITE_TITLE;
     protected $_outputBuffer;
     protected $_layout = DEFAULT_LAYOUT;
 
@@ -17,7 +17,7 @@
       $viewString = implode(DS, $viewArray);
       if(file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
         include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
-        include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
+        //include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
       } else {
         die('The view \"' . $viewName . '\" does not exist.');
       }
@@ -31,4 +31,32 @@
       }
       return false;
     }
+
+    public function start($type) {
+      $this->_outputBuffer = $type;
+      ob_start();
+    }
+
+    public function end() {
+      if($this->_outputBuffer == 'head') {
+        $this->_head = ob_get_clean();
+      } elseif($this->_outputBuffer == 'body') {
+        $this->_body = ob_get_clean();
+      } else {
+        die('You must forst run the start method.');
+      }
+    }
+
+    public function siteTitle() {
+      return $this->_siteTitle;
+    }
+
+    public function setSiteTitle($title) {
+      $this->_siteTitle = $title;
+    }
+
+    public function setLayout($path) {
+      $thi->_layout = $path;
+    }
+
   }

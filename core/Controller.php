@@ -13,5 +13,5 @@
       $this->view = new View();
     }
 
-    
+
   }
