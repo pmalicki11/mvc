@@ -13,8 +13,9 @@
     }
 
     public function render($viewName) {
-      $viewArray = explode('/', $viewName);
-      $viewString = implode(DS, $viewArray);
+      //$viewArray = explode('/', $viewName);
+      //$viewString = implode(DS, $viewArray);
+      $viewString = str_replace('/', DS, $viewName);
       if(file_exists(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php')) {
         include(ROOT . DS . 'app' . DS . 'views' . DS . $viewString . '.php');
         include(ROOT . DS . 'app' . DS . 'views' . DS . 'layouts' . DS . $this->_layout . '.php');
@@ -56,7 +57,7 @@
     }
 
     public function setLayout($path) {
-      $thi->_layout = $path;
+      $this->_layout = $path;
     }
 
   }
