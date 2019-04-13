@@ -21,7 +21,7 @@
   spl_autoload_register('autoload');
   session_start();
   $db = DB::getInstance();
-  dnd($db);
+
   // Route the request
   $url = isset($_SERVER['PATH_INFO']) ? explode('/', ltrim($_SERVER['PATH_INFO'], '/')) : [];
   Router::route($url);
