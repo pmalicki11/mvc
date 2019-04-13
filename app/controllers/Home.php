@@ -8,9 +8,12 @@
 
     public function indexAction() {
       $db = DB::getInstance();
-      $sql = 'SELECT * FROM contacts';
-      $contacts = $db->query($sql);
-      dnd($contacts);
+      $fields = [
+        'fname' => 'Mariia',
+        'lname' => 'Tarasenko',
+        'email' => 'manyat5pol@gmail.com'
+      ];
+      $contacts = $db->insert('contacts', $fields);
       $this->view->render('home/index');
     }
   }
