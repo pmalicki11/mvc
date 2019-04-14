@@ -88,6 +88,26 @@
       return false;
     }
 
+    public function results() {
+      return $this->_result;
+    }
+
+    public function first() {
+      return (!empty($this->_result)) ? $this->_result[0] : [];
+    }
+
+    public function count() {
+      return $this->_count;
+    }
+
+    public function lastID() {
+      return $this->_lastInsertID;
+    }
+
+    public function getColumns($table) {
+      return $this->query("SHOW COLUMNS FROM {$table}")->results();
+    }
+
     public function error() {
       return $this->_error;
     }

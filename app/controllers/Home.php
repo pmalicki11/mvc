@@ -8,7 +8,7 @@
 
     public function indexAction() {
       $db = DB::getInstance();
-      $contacts = $db->delete('contacts', 3);
+      dnd($db->getColumns('contacts'));
       $this->view->render('home/index');
     }
   }
