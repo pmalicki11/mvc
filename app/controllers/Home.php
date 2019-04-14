@@ -8,7 +8,11 @@
 
     public function indexAction() {
       $db = DB::getInstance();
-      dnd($db->getColumns('contacts'));
+      $contacts = $db->findFirst('contacts', [
+        'conditions' => 'lname = ?',
+        'bind' => ['Malicki']
+      ]);
+      dnd($contacts);
       $this->view->render('home/index');
     }
   }
