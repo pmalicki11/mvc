@@ -8,12 +8,7 @@
 
     public function indexAction() {
       $db = DB::getInstance();
-      $fields = [
-        'fname' => 'Mariia',
-        'lname' => 'Tarasenko',
-        'email' => 'manyat5pol@gmail.com'
-      ];
-      $contacts = $db->insert('contacts', $fields);
+      $contacts = $db->delete('contacts', 3);
       $this->view->render('home/index');
     }
   }
