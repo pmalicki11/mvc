@@ -7,12 +7,6 @@
     }
 
     public function indexAction() {
-      $db = DB::getInstance();
-      $contacts = $db->findFirst('contacts', [
-        'conditions' => 'lname = ?',
-        'bind' => ['Malicki']
-      ]);
-      dnd($contacts);
       $this->view->render('home/index');
     }
   }

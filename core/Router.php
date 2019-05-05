@@ -22,7 +22,7 @@
       if(method_exists($controller, $action)) {
         call_user_func_array([$dispatch, $action], $queryParams);
       } else {
-        die('Method does not exists in the controller \"' . $controller_name . '\"');
+        die('Method "' . $action_name . '" does not exists in the "' . $controller_name . '" controller');
       }
     }
   }
