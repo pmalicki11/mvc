@@ -12,15 +12,16 @@
     public function __construct($table) {
       $this->_db = DB::getinstance();
       $this->_table = $table;
-      $this->setTableColumns();
+      $this->_setTableColumns();
       $this->_modelName = str_replace(' ', '', ucwords(str_replace('_', ' ', $this->_table)));
     }
 
     protected function _setTableColumns() {
       $columns = $this->getColumns();
       foreach($columns as $column) {
-        $this->_columnNames[] = $colunm->Field;
-        $this->{$colunmName} = null;
+        $columnName = $column->Field;
+        $this->_columnNames[] = $column->Field;
+        $this->{$columnName} = null;
       }
     }
 
