@@ -1,4 +1,4 @@
-# Core settings - you will need to set these
+﻿# Core settings - you will need to set these
 $mysql_server = "127.0.0.1"
 $mysql_user = "art"
 $mysql_password = "art"
@@ -58,3 +58,5 @@ while ($dr.Read())
 
 # Close the connection
 $cn.Close()
+$HOST.UI.RawUI.ReadKey(“NoEcho,IncludeKeyDown”) | OUT-NULL
+$HOST.UI.RawUI.Flushinputbuffer()

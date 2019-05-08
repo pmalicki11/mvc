@@ -9,10 +9,20 @@
     }
 
     public function loginAction() {
+      $validation = new Validate();
       if($_POST) {
         //validation
-        $validation = true;
-        if($validation === true) {
+        $validation->check($_POST, [
+          'username' => [
+            'display' => 'Username',
+            'required' => true
+          ],
+          'password' => [
+            'display' => 'Password',
+            'required' => true
+          ]
+        ]);
+        if($validation->passed()) {
           $user = $this->UsersModel->findByUsername($_POST['username']);
           if($user && password_verify(Input::get('password'), $user->password)) {
             $remember = (isset($_POST['remember_me']) && Input::get('remember_me')) ? true : false;
