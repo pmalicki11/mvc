@@ -67,6 +67,10 @@
           }
         }
       }
+      if(empty($this->_errors)) {
+        $this->_passed = true;
+      }
+      return $this;
     }
 
     public function addError($error) {
@@ -76,5 +80,27 @@
       } else {
         $this->_passed = false;
       }
+    }
+
+    public function errors() {
+      return $this->_errors;
+    }
+
+    public function passed() {
+      return $this->_passed;
+    }
+
+    public function displayErrors() {
+      $html = '<ul class="bg-danger">';
+      foreach($this->_errors as $error) {
+        if(is_array($error)) {
+          $html .= '<li class="text-danger">' . $error[0] . '</li>';
+          $html .= '<script>jQuery("document").ready(function(){jQuery("#' . $error[1] . '").parent().closest("div").addClass("has-error");})</script>';
+        } else {
+          $html .= '<li class="text-danger">' . $error . '</li>';
+        }
+      }
+      $html .= '</ul>';
+      return $html;
     }
   }
