@@ -50,6 +50,19 @@
       }
     }
 
+    public static function loginUserFromCookie() {
+      $user_session_model = new UserSessions();
+      $user_session = $user_session_model->findFirst([
+        'conditions' => 'user_agnet = ? AND session = ?',
+        'bind' => [Session::uagent_no_version(), Cookie::get(REMEMBER_ME_COOKIE_NAME)]
+      ]);
+      if($user_session->user_id != '') {
+        $user = new self((int)$user_session->user_id);
+      }
+      $user->login();
+      return $user;
+    }
+
     public function logout() {
       $user_agent = Session::uagent_no_version();
       $this->_db->query("DELETE FROM user_sessions WHERE user_id = ? AND user_agent = ?", [$this->id, $user_agent]);

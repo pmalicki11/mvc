@@ -10,7 +10,7 @@
     }
 
     public static function delete($name) {
-      if(setCookie($name, '', time() - 1)) {
+      if(setCookie($name, '', -1, '/')) {
         return true;
       }
       return false;
