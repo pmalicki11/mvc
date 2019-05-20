@@ -14,3 +14,11 @@
   function currentUser() {
     return Users::currentLoggedInUser();
   }
+
+  function posted_velues($post) {
+    $clean_ary = [];
+    foreach($post as $key => $value) {
+      $clean_ary[$key] = sanitize($value);
+    }
+    return $clean_ary;
+  }

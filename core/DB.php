@@ -6,8 +6,8 @@
     private $_pdo;
     private $_query;
     private $_result;
-    private $_count = 0;
     private $_error = false;
+    private $_count = 0;
     private $_lastInsertID = null;
 
     private function __construct(){
