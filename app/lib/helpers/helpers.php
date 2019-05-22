@@ -15,7 +15,7 @@
     return Users::currentLoggedInUser();
   }
 
-  function posted_velues($post) {
+  function posted_values($post) {
     $clean_ary = [];
     foreach($post as $key => $value) {
       $clean_ary[$key] = sanitize($value);
