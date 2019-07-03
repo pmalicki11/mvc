@@ -35,7 +35,7 @@
           if(is_array($params['conditions'])) {
             $params['conditions'][] = 'deleted != 1';
           } else {
-            $params .= 'AND deleted != 1';
+            $params['conditions'] .= 'AND deleted != 1';
           }
         } else {
           $params['conditions'] = 'deleted != 1';
@@ -48,6 +48,7 @@
       $params = $this->_softDeleteParams($params);
       $results = [];
       $resultsQuery = $this->_db->find($this->_table, $params);
+      if(!$resultsQuery) return [];
       foreach($resultsQuery as $result) {
         $obj = new $this->_modelName($this->_table);
         $obj->populateObjData($result);
