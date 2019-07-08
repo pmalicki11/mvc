@@ -63,6 +63,8 @@
       $result = new $this->_modelName($this->_table);
       if($resultQuery) {
         $result->populateObjData($resultQuery);
+      } else {
+        $result = false;
       }
       return $result;
     }
