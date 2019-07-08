@@ -95,7 +95,7 @@
       return $this->_db->update($this->_table, $id, $fields);
     }
 
-    public function delete($id) {
+    public function delete($id = '') {
       if($id == '' && $this->id == '') return false;
       $id = ($id == '') ? $this->id : $id;
       if($this->_softDelete) {
