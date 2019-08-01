@@ -6,6 +6,13 @@
     private $_sessionName;
     private $_cookieName;
     public static $currentLoggedInUser = null;
+    public $username;
+    public $email;
+    public $password;
+    public $fname;
+    public $lname;
+    public $acl;
+    public $deleted = 0;
 
     public function __construct($user = '') {
       $table = 'users';
@@ -15,9 +22,9 @@
       $this->_softDelete = true;
       if($user != '') {
         if(is_int($user)) {
-          $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]]);
+          $u = $this->_db->findFirst('users', ['conditions' => 'id = ?', 'bind' => [$user]], 'Users');
         } else {
-          $u = $this->_db->findFirst('users', ['conditions' => 'username = ?', 'bind' => [$user]]);
+          $u = $this->_db->findFirst('users', ['conditions' => 'username = ?', 'bind' => [$user]], 'Users');
         }
         if($u) {
           foreach($u as $key =>$val) {
