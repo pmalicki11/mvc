@@ -1,5 +1,6 @@
 <form class="form" action="<?=$this->postAction;?>" method="post">
-  <div class="bg-danger form-errors"><?=$this->displayErrors;?></div>
+  <div class="form-errors"><?=$this->displayErrors;?></div>
+  <?= FH::csrfInput(); ?>
   <?= inputBlock('text', 'First Name', 'fname', $this->contact->fname, ['class' => 'form-control'],['class' => 'form-group col-md-6']); ?>
   <?= inputBlock('text', 'Last Name', 'lname', $this->contact->lname, ['class' => 'form-control'],['class' => 'form-group col-md-6']); ?>
   <?= inputBlock('text', 'Address', 'address', $this->contact->address, ['class' => 'form-control'],['class' => 'form-group col-md-6']); ?>
