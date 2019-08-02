@@ -9,7 +9,7 @@
     }
 
     public function indexAction() {
-      $contacts = $this->ContactsModel->findAllByUserId(currentUser()->id, ['order' => 'lname, fname']);
+      $contacts = $this->ContactsModel->findAllByUserId(Users::currentUser()->id, ['order' => 'lname, fname']);
       $this->view->contacts = $contacts;
       $this->view->render('contacts/index');
     }
@@ -21,7 +21,7 @@
         $contact->assign($_POST);
         $validation->check($_POST, Contacts::$addValidation, true);
         if($validation->passed()) {
-          $contact->user_id = currentUser()->id;
+          $contact->user_id = Users::currentUser()->id;
           $contact->save();
           Router::redirect('contacts');
         }
@@ -33,7 +33,7 @@
     }
 
     public function editAction($id) {
-      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, currentUser()->id);
+      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
       if(!$contact) Router::redirect('contacts');
       $validation = new Validate();
       if($_POST) {
@@ -51,7 +51,7 @@
     }
 
     public function detailsAction($id) {
-      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, currentUser()->id);
+      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
       if(!$contact) {
         Router::redirect('contacts');
       }
@@ -60,7 +60,7 @@
     }
 
     public function deleteAction($id) {
-      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, currentUser()->id);
+      $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
       if($contact) {
         $contact->delete();
       }
