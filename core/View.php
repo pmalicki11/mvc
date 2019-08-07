@@ -44,7 +44,7 @@
       } elseif($this->_outputBuffer == 'body') {
         $this->_body = ob_get_clean();
       } else {
-        die('You must forst run the start method.');
+        die('You must first run the start method.');
       }
     }
 
