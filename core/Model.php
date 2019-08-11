@@ -125,7 +125,7 @@
     }
 
     public function getErrorMessages() {
-      return $this->$_validationErrors;
+      return $this->_validationErrors;
     }
 
     public function validationPasses() {

@@ -1,6 +1,6 @@
 <?php
 
-  abstract class CustomValidaror {
+  abstract class CustomValidator {
 
     public $success = true;
     public $msg = '';
@@ -8,14 +8,14 @@
     public $rule;
     protected $_model;
 
-    public function _construct($model, $params) {
+    public function __construct($model, $params) {
       $this->_model = $model;
       if(!array_key_exists('field', $params)) {
         throw new Exception('You must add a field to the params array.');
       } else {
         $this->field = is_array($params['field']) ? $params['field'][0] : $params['field'];
       }
-      if(!property_exists($_model, $this->field)) {
+      if(!property_exists($model, $this->field)) {
         throw new Exception('The field must exist in the model.');
       }
       if(!array_key_exists('msg', $params)) {
