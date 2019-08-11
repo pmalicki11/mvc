@@ -34,6 +34,10 @@
       }
     }
 
+    public function validator() {
+      $this->runValidation(new MinValidator($this, ['field' => 'username', 'rule' => 6, 'msg' => 'Username must be at least 6 characters.']));
+    }
+
     public function findByUsername($username) {
       return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
