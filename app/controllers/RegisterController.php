@@ -48,6 +48,7 @@
       $newUser = new Users();
       if($_POST) {
         $newUser->assign($_POST);
+        $newUser->setConfirm(Input::get('confirm'));
         if($newUser->save()) {
           Router::redirect('register/login');
         }
