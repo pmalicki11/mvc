@@ -1,7 +1,7 @@
 <?php
 
   abstract class CustomValidator {
-
+    public $test;
     public $success = true;
     public $msg = '';
     public $field;
