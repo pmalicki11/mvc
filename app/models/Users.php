@@ -49,6 +49,10 @@
       $this->runValidation(new MatchesValidator($this, ['field' => 'password', 'rule' => $this->_confirm, 'msg' => 'Your passwords do not match.']));
     }
 
+    public function beforeSave() {
+      $this->password = password_hash($this->password, PASSWORD_DEFAULT);
+    }
+
     public function findByUsername($username) {
       return $this->findFirst(['conditions' => 'username = ?', 'bind' => [$username]]);
     }
@@ -94,13 +98,6 @@
       }
       self::$currentLoggedInUser = null;
       return true;
-    }
-
-    public function registerNewUser($params) {
-      $this->assign($params);
-      $this->deleted = 0;
-      $this->password = password_hash($this->password, PASSWORD_DEFAULT);
-      $this->save();
     }
 
     public function acls() {

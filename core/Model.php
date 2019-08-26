@@ -55,11 +55,16 @@
     public function save() {
       $this->validator();
       if($this->_validates) {
+        $this->beforeSave();
         $fields = H::getObjectProperties($this);
         if(property_exists($this, 'id') && $this->id != '') {
-          return $this->update($this->id, $fields);
+          $save = $this->update($this->id, $fields);
+          $this->afterSave();
+          return $save;
         } else {
-          return $this->insert($fields);
+          $save = $this->insert($fields);
+          $this->afterSave();
+          return $save;
         }
       }
       return false;
@@ -128,7 +133,7 @@
       return $this->_validationErrors;
     }
 
-    public function validationPasses() {
+    public function validationPassed() {
       return $this->_validates;
     }
 
@@ -136,4 +141,8 @@
       $this->_validates = false;
       $this->_validationErrors[$field] = $msg;
     }
+
+    public function beforeSave() {}
+
+    public function afterSave() {}
   }
