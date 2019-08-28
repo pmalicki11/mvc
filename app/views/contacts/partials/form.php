@@ -1,5 +1,5 @@
 <form class="form" action="<?=$this->postAction;?>" method="post">
-  <div class="form-errors"><?=$this->displayErrors;?></div>
+  <?= FH::displayErrors($this->displayErrors); ?>
   <?= FH::csrfInput(); ?>
   <?= FH::inputBlock('text', 'First Name', 'fname', $this->contact->fname, ['class' => 'form-control'],['class' => 'form-group col-md-6']); ?>
   <?= FH::inputBlock('text', 'Last Name', 'lname', $this->contact->lname, ['class' => 'form-control'],['class' => 'form-group col-md-6']); ?>

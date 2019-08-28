@@ -23,18 +23,12 @@
       $this->_softDelete = true;
     }
 
-    public static $addValidation = [
-      'fname' => [
-        'display' => 'First Name',
-        'required' => true,
-        'max' => 155
-      ],
-      'lname' => [
-        'display' => 'First Name',
-        'required' => true,
-        'max' => 155
-      ]
-    ];
+    public function validator() {
+      $this->runValidation(new RequiredValidator($this, ['field' => 'fname', 'msg' => 'First Name is required.']));
+      $this->runValidation(new MaxValidator($this, ['field' => 'fname', 'msg' => 'First Name must be less than 156 characters.', 'rule' => 155]));
+      $this->runValidation(new RequiredValidator($this, ['field' => 'lname', 'msg' => 'Last Name is required.']));
+      $this->runValidation(new MaxValidator($this, ['field' => 'lname', 'msg' => 'Last Name must be less than 156 characters.', 'rule' => 155]));
+    }
 
     public function findAllByUserId($user_id, $params = []) {
       $conditions = [
