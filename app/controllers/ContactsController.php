@@ -59,6 +59,7 @@
       $contact = $this->ContactsModel->findByIdAndUserId((int)$id, Users::currentUser()->id);
       if($contact) {
         $contact->delete();
+        Session::addMsg('success', 'Contact has been deleted.');
       }
       Router::redirect('contacts');
     }
